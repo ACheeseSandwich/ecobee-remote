@@ -189,6 +189,11 @@ if __name__ == '__main__':
         log.critical("Heat on threshold of %s is >= heat off threshold of %s. Will not adjust temp" % (heat_on_threshold, heat_off_threshold))
         args.adjust_temp = False
 
+    #modes are off , heat, cool
+    mode = getHvacMode(thermostats[0])
+    if mode != 'heat':
+        log.warning("Thermostat mode not set to heat. Will not adjust temperature")
+        args.adjust_temp = False
 
     #if adjust
     #  set hold
